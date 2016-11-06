@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 100px;
+				height: 100px;
+				margin-bottom: 100px;				
+			}
+			#source{
+				background-color: red;
+			}
+			#target{
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="source">
+			资源
+		</div>
+	    <div id="target">
+	    	目标区域
+	    </div>
+	    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DragEvent">更多有关dragEvent的信息</a>
+	</body>
+	<script>
+		var
+			source = document.getElementById("source"),
+			target = document.getElementById("target");
+		source.draggable = true;
+		//drop事件用于接收drag过来的数据,属于dragEvent中的一员
+		//更多有关dragEvent的信息：https://developer.mozilla.org/en-US/docs/Web/API/DragEvent
+		source.ondragstart = function(ev){
+			ev.dataTransfer.setData('Text',ev.target.id);
+		}
+		target.ondragover = function(ev){
+			ev.preventDefault();
+		}
+		target.ondrop = function(ev){
+			ev.preventDefault();
+			var 
+				data = ev.dataTransfer.getData('Text');
+			console.dir(ev);
+			console.log('我是获取到的数据:' + data);
+		}
+	</script>
+</html>
