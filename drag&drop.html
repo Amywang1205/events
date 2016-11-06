@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>drag&drop</title>
+		<style>
+			#box{
+				width: 100px;
+				height: 100px;
+				background-color: red;
+			}
+			#wrap{
+				width: 200px;
+				height: 200px;
+				background-color: blue;
+				margin-top: 100px;;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<div id="wrap"></div>
+	</body>
+	<script type="text/javascript">
+		var 
+			box = document.getElementById("box"),
+			wrap = document.getElementById("wrap");
+		box.draggable = true;
+		//只要处于drag状态，都会触发
+		box.ondrag = function(){
+			console.log('ondrag');
+		}
+		//进入需要拖拽元素时触发
+		box.ondragenter = function(){
+			console.log('dragenter')
+		}
+		//拖拽结束时，触发
+		box.ondragend = function(){
+			console.log('dragend')
+		}
+		//离开拖拽元素时触发
+		box.ondragleave = function(){
+			console.log('dragleave')
+		}
+		//在拖拽元素内部时触发
+		box.ondragover = function(){
+			console.log('dragover')
+		}
+		
+		wrap.ondrop = function(e){
+			e.preventDefault();
+			console.log('drop')
+		}
+		console.dir(box);
+	</script>
+</html>
